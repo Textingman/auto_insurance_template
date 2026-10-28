@@ -3,209 +3,286 @@
 import { useState } from 'react';
 import Nav from '../components/Nav';
 import Footer from '../components/Footer';
-import Link from 'next/link';
 
-export default function ContactPage() {
-  const [formData, setFormData] = useState({
-    name: '', email: '', company: '', role: '', subject: '', message: ''
-  });
+const SERVICES = [
+  {
+    id: 'car-selection',
+    icon: '🚗',
+    label: 'Car Finder & Negotiation',
+    price: '$1,200 one-time',
+    desc: 'Find the right make & model and negotiate with dealerships on your behalf.',
+    color: '#1e40af',
+  },
+  {
+    id: 'insurance',
+    icon: '🛡️',
+    label: 'Insurance Finder',
+    price: '$300 one-time',
+    desc: 'Find the right auto insurance coverage at the best rate for your situation.',
+    color: '#0891b2',
+  },
+  {
+    id: 'maintenance',
+    icon: '🔧',
+    label: 'Maintenance Reminders',
+    price: '$30/month',
+    desc: 'Personalized maintenance reminders to keep your car running at its best.',
+    color: '#7c3aed',
+  },
+];
+
+export default function ConsultationPage() {
+  const [selectedServices, setSelectedServices] = useState<string[]>([]);
+  const [formData, setFormData] = useState({ name: '', email: '', phone: '', message: '' });
+  const [smsOptIn, setSmsOptIn] = useState(false);
+  const [agreedToTerms, setAgreedToTerms] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const toggleService = (id: string) => {
+    setSelectedServices(prev =>
+      prev.includes(id) ? prev.filter(s => s !== id) : [...prev, id]
+    );
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    if (selectedServices.length === 0 || !agreedToTerms) return;
     setSubmitting(true);
     setTimeout(() => { setSubmitting(false); setSubmitted(true); }, 1500);
   };
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Background blobs */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden" style={{ zIndex: 0 }}>
-        <div className="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] blob opacity-30"
-          style={{ background: 'radial-gradient(circle, rgba(134,239,172,0.4) 0%, transparent 70%)' }} />
-        <div className="absolute bottom-[10%] left-[-5%] w-[400px] h-[400px] blob opacity-25"
+        <div className="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] blob opacity-25"
           style={{ background: 'radial-gradient(circle, rgba(147,197,253,0.4) 0%, transparent 70%)' }} />
+        <div className="absolute bottom-[10%] left-[-5%] w-[400px] h-[400px] blob opacity-20"
+          style={{ background: 'radial-gradient(circle, rgba(251,191,36,0.3) 0%, transparent 70%)' }} />
       </div>
 
       <Nav />
 
       {/* Hero */}
-      <section className="pt-32 pb-16 px-6 text-center relative" style={{ zIndex: 1 }}>
+      <section className="pt-32 pb-12 px-6 text-center relative" style={{ zIndex: 1 }}>
         <div className="max-w-3xl mx-auto">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium text-green-700 mb-6"
-            style={{ background: 'rgba(134,239,172,0.2)', border: '1px solid rgba(134,239,172,0.4)' }}>
-            <div className="w-1.5 h-1.5 rounded-full bg-green-500" />
-            We&apos;re here to help
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium text-blue-700 mb-6"
+            style={{ background: 'rgba(147,197,253,0.2)', border: '1px solid rgba(147,197,253,0.4)' }}>
+            <div className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" />
+            Free Consultation — No Commitment
           </div>
           <h1 className="text-5xl md:text-6xl font-bold text-gray-900 tracking-tight mb-6">
-            Contact Us
+            Book Your Free
+            <br /><span className="gradient-text-blue">Consultation</span>
           </h1>
           <p className="text-xl text-gray-500 max-w-2xl mx-auto">
-            Have questions about Team Cross Fit for your organization? Our team is ready to help HR and people teams build better wellness programs.
+            Select the services you need, fill in your details, and we&apos;ll reach out within 1 business day. Completely free — no pressure, no commitment.
           </p>
         </div>
       </section>
 
-      {/* Contact grid */}
-      <section className="py-12 px-6 relative" style={{ zIndex: 1 }}>
-        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12">
-
-          {/* Contact info */}
-          <div>
-            <h2 className="text-2xl font-bold text-gray-900 mb-8">Get in touch</h2>
-
-            <div className="space-y-6 mb-10">
-              {[
-                { icon: '📧', title: 'Email', value: 'support@teamcrossfit.com', href: 'mailto:support@teamcrossfit.com' },
-                { icon: '📞', title: 'Phone', value: '(855) XXX-XXXX', href: 'tel:+18550000000' },
-                { icon: '🕐', title: 'Business Hours', value: 'Monday – Friday, 9am – 6pm EST', href: null },
-              ].map(item => (
-                <div key={item.title} className="flex items-start gap-4 p-5 rounded-2xl" style={{ background: 'rgba(0,0,0,0.02)' }}>
-                  <span className="text-2xl">{item.icon}</span>
-                  <div>
-                    <p className="font-semibold text-gray-900 mb-1">{item.title}</p>
-                    {item.href ? (
-                      <a href={item.href} className="text-green-600 hover:text-green-700 transition-colors">{item.value}</a>
-                    ) : (
-                      <p className="text-gray-500">{item.value}</p>
-                    )}
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {/* For HR teams callout */}
-            <div className="glass-card p-6">
-              <div className="flex items-center gap-3 mb-4">
-                <span className="text-2xl">🏢</span>
-                <h3 className="font-bold text-gray-900">For HR & People Teams</h3>
-              </div>
-              <p className="text-sm text-gray-500 mb-4">
-                Looking to launch a wellness program for your organization? We work directly with HR teams to set up company accounts, configure wellness programs, and onboard employees.
-              </p>
-              <Link href="/for-employers"
-                className="inline-flex items-center gap-2 text-sm font-semibold text-green-600 hover:text-green-700 transition-colors">
-                Learn about employer setup
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M5 12h14M12 5l7 7-7 7" />
+      {/* Single Form */}
+      <section className="py-8 px-6 pb-20 relative" style={{ zIndex: 1 }}>
+        <div className="max-w-3xl mx-auto">
+          {submitted ? (
+            <div className="glass-card p-12 text-center">
+              <div className="w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-6"
+                style={{ background: 'linear-gradient(135deg, #1e40af, #2563eb)' }}>
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5">
+                  <path d="M20 6L9 17l-5-5" />
                 </svg>
-              </Link>
-            </div>
-          </div>
-
-          {/* Contact form */}
-          <div className="glass-card p-8">
-            {submitted ? (
-              <div className="text-center py-12">
-                <div className="w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6"
-                  style={{ background: 'linear-gradient(135deg, #16a34a, #059669)' }}>
-                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5">
-                    <path d="M20 6L9 17l-5-5" />
-                  </svg>
-                </div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-3">Message Sent!</h3>
-                <p className="text-gray-500 mb-6">Thanks for reaching out. We&apos;ll get back to you within one business day.</p>
-                <button onClick={() => setSubmitted(false)}
-                  className="px-6 py-3 text-sm font-semibold text-white rounded-xl"
-                  style={{ background: 'linear-gradient(135deg, #16a34a, #059669)' }}>
-                  Send Another Message
-                </button>
               </div>
-            ) : (
-              <>
-                <h3 className="text-xl font-bold text-gray-900 mb-6">Send us a message</h3>
-                <form onSubmit={handleSubmit} className="space-y-4">
-                  <div className="grid grid-cols-2 gap-4">
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1.5">Full Name *</label>
-                      <input type="text" name="name" required value={formData.name} onChange={handleChange}
-                        className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-green-500 focus:border-transparent text-sm"
-                        placeholder="Jane Smith" />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1.5">Work Email *</label>
-                      <input type="email" name="email" required value={formData.email} onChange={handleChange}
-                        className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-green-500 focus:border-transparent text-sm"
-                        placeholder="jane@company.com" />
-                    </div>
-                  </div>
+              <h2 className="text-3xl font-bold text-gray-900 mb-3">Consultation Booked!</h2>
+              <p className="text-lg text-gray-500 mb-4 max-w-md mx-auto">
+                Thanks, <strong>{formData.name}</strong>! We&apos;ve received your request for:
+              </p>
+              <div className="flex flex-wrap justify-center gap-2 mb-6">
+                {selectedServices.map(id => {
+                  const svc = SERVICES.find(s => s.id === id);
+                  return svc ? (
+                    <span key={id} className="px-3 py-1.5 rounded-full text-sm font-semibold text-white"
+                      style={{ background: `linear-gradient(135deg, ${svc.color}, #2563eb)` }}>
+                      {svc.icon} {svc.label}
+                    </span>
+                  ) : null;
+                })}
+              </div>
+              <p className="text-gray-500 mb-8">
+                A consultant will reach out to <strong>{formData.email}</strong> within 1 business day.
+              </p>
+              <button onClick={() => { setSubmitted(false); setSelectedServices([]); setFormData({ name: '', email: '', phone: '', message: '' }); setSmsOptIn(false); setAgreedToTerms(false); }}
+                className="px-6 py-3 text-sm font-semibold text-white rounded-xl"
+                style={{ background: 'linear-gradient(135deg, #1e40af, #2563eb)' }}>
+                Book Another Consultation
+              </button>
+            </div>
+          ) : (
+            <form onSubmit={handleSubmit} className="glass-card p-8 space-y-8">
 
-                  <div className="grid grid-cols-2 gap-4">
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1.5">Company</label>
-                      <input type="text" name="company" value={formData.company} onChange={handleChange}
-                        className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-green-500 focus:border-transparent text-sm"
-                        placeholder="Acme Corp" />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1.5">Your Role</label>
-                      <select name="role" value={formData.role} onChange={handleChange}
-                        className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-green-500 focus:border-transparent text-sm bg-white">
-                        <option value="">Select role...</option>
-                        <option value="hr">HR / People Team</option>
-                        <option value="benefits">Benefits Manager</option>
-                        <option value="executive">Executive / Leadership</option>
-                        <option value="employee">Employee</option>
-                        <option value="other">Other</option>
-                      </select>
-                    </div>
-                  </div>
+              {/* Services */}
+              <div>
+                <h2 className="text-lg font-bold text-gray-900 mb-1">What do you need help with? *</h2>
+                <p className="text-sm text-gray-500 mb-4">Select one or more — you can choose all three.</p>
+                <div className="grid md:grid-cols-3 gap-3">
+                  {SERVICES.map(service => {
+                    const isSelected = selectedServices.includes(service.id);
+                    return (
+                      <button
+                        key={service.id}
+                        type="button"
+                        onClick={() => toggleService(service.id)}
+                        className={`p-4 rounded-2xl text-left transition-all border-2 ${
+                          isSelected ? 'border-blue-500 shadow-md' : 'border-transparent hover:border-gray-200'
+                        }`}
+                        style={{ background: isSelected ? `${service.color}0d` : 'rgba(0,0,0,0.03)' }}
+                      >
+                        <div className="flex items-start justify-between mb-2">
+                          <span className="text-2xl">{service.icon}</span>
+                          <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center flex-shrink-0 transition-all ${
+                            isSelected ? 'border-blue-500 bg-blue-500' : 'border-gray-300'
+                          }`}>
+                            {isSelected && (
+                              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3">
+                                <path d="M20 6L9 17l-5-5" />
+                              </svg>
+                            )}
+                          </div>
+                        </div>
+                        <p className="font-bold text-gray-900 text-sm mb-0.5">{service.label}</p>
+                        <p className="text-xs font-semibold" style={{ color: service.color }}>{service.price}</p>
+                      </button>
+                    );
+                  })}
+                </div>
+                {selectedServices.length === 0 && (
+                  <p className="text-xs text-amber-600 mt-2">Please select at least one service.</p>
+                )}
+              </div>
 
+              <div className="border-t border-gray-100" />
+
+              {/* Personal Info */}
+              <div className="space-y-4">
+                <h2 className="text-lg font-bold text-gray-900">Your Details</h2>
+                <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1.5">Subject *</label>
-                    <select name="subject" required value={formData.subject} onChange={handleChange}
-                      className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-green-500 focus:border-transparent text-sm bg-white">
-                      <option value="">Select a topic...</option>
-                      <option value="employer">Setting up a company wellness program</option>
-                      <option value="employee">Employee account help</option>
-                      <option value="integrations">Integrations & connected apps</option>
-                      <option value="pricing">Pricing & plans</option>
-                      <option value="privacy">Privacy & data questions</option>
-                      <option value="other">Other</option>
-                    </select>
+                    <label className="block text-sm font-medium text-gray-700 mb-1.5">Full Name *</label>
+                    <input type="text" name="name" required value={formData.name} onChange={handleChange}
+                      className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"
+                      placeholder="Jane Smith" />
                   </div>
-
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1.5">Message *</label>
-                    <textarea name="message" required rows={5} value={formData.message} onChange={handleChange}
-                      className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-green-500 focus:border-transparent text-sm resize-none"
-                      placeholder="Tell us how we can help..." />
+                    <label className="block text-sm font-medium text-gray-700 mb-1.5">Email Address *</label>
+                    <input type="email" name="email" required value={formData.email} onChange={handleChange}
+                      className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"
+                      placeholder="jane@email.com" />
                   </div>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1.5">Phone Number <span className="text-gray-400">(optional)</span></label>
+                  <input type="tel" name="phone" value={formData.phone} onChange={handleChange}
+                    className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"
+                    placeholder="(555) 000-0000" />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1.5">Tell us about your situation <span className="text-gray-400">(optional)</span></label>
+                  <textarea name="message" rows={3} value={formData.message} onChange={handleChange}
+                    className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm resize-none"
+                    placeholder="e.g. Looking for a family SUV under $40k, or I think I'm overpaying for insurance..." />
+                </div>
+              </div>
 
-                  <button type="submit" disabled={submitting}
-                    className="w-full py-4 text-sm font-semibold text-white rounded-xl transition-all hover:opacity-90 disabled:opacity-60"
-                    style={{ background: 'linear-gradient(135deg, #16a34a, #059669)' }}>
-                    {submitting ? 'Sending...' : 'Send Message'}
-                  </button>
-                </form>
-              </>
-            )}
-          </div>
+              <div className="border-t border-gray-100" />
+
+              {/* Consents */}
+              <div className="space-y-4">
+                {/* SMS Opt-In */}
+                <label className="flex items-start gap-3 cursor-pointer group">
+                  <div className="flex-shrink-0 mt-0.5">
+                    <div className={`w-5 h-5 rounded border-2 flex items-center justify-center transition-all ${
+                      smsOptIn ? 'bg-blue-600 border-blue-600' : 'border-gray-300 group-hover:border-blue-400'
+                    }`} onClick={() => setSmsOptIn(!smsOptIn)}>
+                      {smsOptIn && (
+                        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3">
+                          <path d="M20 6L9 17l-5-5" />
+                        </svg>
+                      )}
+                    </div>
+                  </div>
+                  <div>
+                    <p className="text-sm font-medium text-gray-900">
+                      I consent to receive SMS text messages from Auto Insurance <span className="text-gray-400 font-normal">(optional)</span>
+                    </p>
+                    <p className="text-xs text-gray-500 mt-1 leading-relaxed">
+                      By checking this box, you expressly consent to receive text messages from Auto Insurance for the following purposes: <strong>promotional marketing</strong> (special offers, service updates, and promotions), <strong>customer care</strong> (consultation follow-ups, support, and service-related communications), and <strong>transactional account notifications</strong> (booking confirmations, appointment reminders, and account alerts). Message and data rates may apply. Message frequency varies. Reply <strong>STOP</strong> to opt out at any time. Reply <strong>HELP</strong> for help. <strong>No mobile information will be shared with or sold to third parties for marketing or promotional purposes.</strong>
+                    </p>
+                  </div>
+                </label>
+
+                {/* Terms & Privacy */}
+                <label className="flex items-start gap-3 cursor-pointer group">
+                  <div className="flex-shrink-0 mt-0.5">
+                    <div className={`w-5 h-5 rounded border-2 flex items-center justify-center transition-all ${
+                      agreedToTerms ? 'bg-blue-600 border-blue-600' : 'border-gray-300 group-hover:border-blue-400'
+                    }`} onClick={() => setAgreedToTerms(!agreedToTerms)}>
+                      {agreedToTerms && (
+                        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3">
+                          <path d="M20 6L9 17l-5-5" />
+                        </svg>
+                      )}
+                    </div>
+                  </div>
+                  <div>
+                    <p className="text-sm font-medium text-gray-900">
+                      I agree to the{' '}
+                      <a href="/terms" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Terms of Service</a>
+                      {' '}and{' '}
+                      <a href="/privacy" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Privacy Policy</a>
+                      {' '}<span className="text-red-500">*</span>
+                    </p>
+                    <p className="text-xs text-gray-500 mt-0.5">Required to proceed.</p>
+                  </div>
+                </label>
+              </div>
+
+              {/* Submit */}
+              <button
+                type="submit"
+                disabled={submitting || selectedServices.length === 0 || !agreedToTerms}
+                className="w-full py-4 text-base font-semibold text-white rounded-2xl shadow-xl transition-all hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed"
+                style={{ background: 'linear-gradient(135deg, #1e40af, #2563eb)' }}>
+                {submitting ? 'Booking Your Consultation...' : 'Book My Free Consultation →'}
+              </button>
+              <p className="text-center text-sm text-gray-400">
+                Free consultation. No commitment. We&apos;ll reach out within 1 business day.
+              </p>
+
+            </form>
+          )}
         </div>
       </section>
 
-      {/* FAQ quick links */}
-      <section className="py-16 px-6 relative" style={{ zIndex: 1 }}>
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-2xl font-bold text-gray-900 text-center mb-10">Common Questions</h2>
-          <div className="grid md:grid-cols-2 gap-4">
+      {/* Contact info strip */}
+      <section className="py-12 px-6 border-t border-gray-100 relative" style={{ zIndex: 1 }}>
+        <div className="max-w-3xl mx-auto">
+          <div className="grid md:grid-cols-3 gap-6 text-center">
             {[
-              { q: 'How do employees join?', a: 'Employees receive a Company ID from their HR team and use it to create their account on Team Cross Fit.', link: '/how-it-works' },
-              { q: 'What health apps are supported?', a: 'Apple Health is our primary integration. We also support compatible smartwatches and fitness trackers.', link: '/integrations' },
-              { q: 'How does privacy work?', a: 'Employees control exactly what data they share. Employers only see aggregate wellness engagement data.', link: '/privacy' },
-              { q: 'How do I set up a company program?', a: 'Contact our team or visit the For HR Teams page to learn about setting up your organization\'s wellness program.', link: '/for-employers' },
+              { icon: '📧', label: 'Email Us', value: 'support@autoinsurancetemplate.com', href: 'mailto:support@autoinsurancetemplate.com' },
+              { icon: '📞', label: 'Call Us', value: '(855) XXX-XXXX', href: 'tel:+18550000000' },
+              { icon: '🕐', label: 'Business Hours', value: 'Mon–Fri, 9am–6pm EST', href: null },
             ].map(item => (
-              <div key={item.q} className="glass-card p-6">
-                <h3 className="font-semibold text-gray-900 mb-2">{item.q}</h3>
-                <p className="text-sm text-gray-500 mb-3">{item.a}</p>
-                <Link href={item.link} className="text-xs font-semibold text-green-600 hover:text-green-700 transition-colors">
-                  Learn more →
-                </Link>
+              <div key={item.label} className="p-5 rounded-2xl" style={{ background: 'rgba(0,0,0,0.02)' }}>
+                <div className="text-2xl mb-2">{item.icon}</div>
+                <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-1">{item.label}</p>
+                {item.href ? (
+                  <a href={item.href} className="text-sm text-blue-600 hover:text-blue-700 font-medium">{item.value}</a>
+                ) : (
+                  <p className="text-sm text-gray-600 font-medium">{item.value}</p>
+                )}
               </div>
             ))}
           </div>

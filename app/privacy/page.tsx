@@ -7,20 +7,20 @@ export default function PrivacyPage() {
     <div className="min-h-screen bg-white">
       <div className="fixed inset-0 pointer-events-none overflow-hidden" style={{ zIndex: 0 }}>
         <div className="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] blob opacity-25"
-          style={{ background: 'radial-gradient(circle, rgba(134,239,172,0.4) 0%, transparent 70%)' }} />
+          style={{ background: 'radial-gradient(circle, rgba(147,197,253,0.4) 0%, transparent 70%)' }} />
       </div>
 
       <Nav />
 
       <section className="pt-32 pb-16 px-6 relative" style={{ zIndex: 1 }}>
         <div className="max-w-4xl mx-auto">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium text-green-700 mb-8"
-            style={{ background: 'rgba(134,239,172,0.2)', border: '1px solid rgba(134,239,172,0.4)' }}>
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium text-blue-700 mb-8"
+            style={{ background: 'rgba(147,197,253,0.2)', border: '1px solid rgba(147,197,253,0.4)' }}>
             <span>🔐</span>
             Privacy Policy
           </div>
           <h1 className="text-5xl font-bold text-gray-900 tracking-tight mb-4">Privacy Policy</h1>
-          <p className="text-lg text-gray-500">Last Updated: September 8, 2026</p>
+          <p className="text-lg text-gray-500">Last Updated: October 28, 2026</p>
         </div>
       </section>
 
@@ -32,9 +32,9 @@ export default function PrivacyPage() {
             <h2 className="text-2xl font-bold text-gray-900 mb-6">Our Privacy Principles</h2>
             <div className="grid md:grid-cols-3 gap-6">
               {[
-                { icon: '🔐', title: 'Your Data', desc: 'Your wellness information belongs to you. You decide what to share and can revoke access at any time.' },
-                { icon: '⚙️', title: 'Your Permissions', desc: 'You choose which supported health information you authorize. Granular control over every data type.' },
-                { icon: '✋', title: 'Your Choice', desc: 'Participating in connected wellness experiences should feel transparent and intentional — never coerced.' },
+                { icon: '🔐', title: 'Your Data', desc: 'Your personal information belongs to you. We collect only what we need to provide our consultancy services.' },
+                { icon: '⚙️', title: 'Your Control', desc: 'You can request access, correction, or deletion of your personal information at any time.' },
+                { icon: '✋', title: 'No Selling', desc: 'We never sell your personal information to third parties. Your data is used only to serve you.' },
               ].map(item => (
                 <div key={item.title} className="text-center p-4">
                   <span className="text-3xl mb-3 block">{item.icon}</span>
@@ -50,10 +50,10 @@ export default function PrivacyPage() {
             <div>
               <h2 className="text-2xl font-bold text-gray-900 mb-4">1. Introduction</h2>
               <p className="text-gray-600 leading-relaxed">
-                Team Cross Fit (&quot;we,&quot; &quot;our,&quot; or &quot;us&quot;) is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our connected employee wellness platform.
+                Auto Insurance Template (&quot;we,&quot; &quot;our,&quot; or &quot;us&quot;) is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our auto consultancy platform and services.
               </p>
               <p className="text-gray-600 leading-relaxed mt-4">
-                Team Cross Fit is designed around employee choice. Employees decide whether to connect supported health services and choose what eligible activity they authorize. Employers receive the information necessary to operate wellness programs without needing access to an employee&apos;s broader personal health history.
+                We provide consultancy services related to car selection, auto insurance guidance, and vehicle maintenance planning. This policy describes how we handle the information you share with us in the course of receiving these services.
               </p>
             </div>
 
@@ -61,87 +61,63 @@ export default function PrivacyPage() {
               <h2 className="text-2xl font-bold text-gray-900 mb-4">2. Information We Collect</h2>
 
               <h3 className="text-xl font-semibold text-gray-900 mt-6 mb-3">2.1 Information You Provide</h3>
-              <p className="text-gray-600 mb-3">When you create an account, we may collect:</p>
+              <p className="text-gray-600 mb-3">When you use our services or contact us, we may collect:</p>
               <ul className="list-disc pl-6 text-gray-600 space-y-2">
-                <li>Name and contact information (email, phone number)</li>
-                <li>Company ID and employer information</li>
-                <li>Job title and department</li>
-                <li>Account credentials</li>
+                <li>Name and contact information (email address, phone number)</li>
+                <li>Vehicle information (make, model, year, current mileage)</li>
+                <li>Insurance information (current provider, coverage details)</li>
+                <li>Budget and financial preferences related to vehicle decisions</li>
+                <li>Geographic location (state/region for insurance requirements)</li>
+                <li>Account credentials if you create an account</li>
               </ul>
 
-              <h3 className="text-xl font-semibold text-gray-900 mt-6 mb-3">2.2 Health & Wellness Activity Data</h3>
-              <p className="text-gray-600 mb-3">
-                When you connect Apple Health or compatible devices, we collect only the specific data types you explicitly authorize. This may include:
-              </p>
-              <ul className="list-disc pl-6 text-gray-600 space-y-2">
-                <li>Step count and walking/running distance</li>
-                <li>Workout and exercise activity records</li>
-                <li>Active energy and movement data</li>
-                <li>Exercise minutes and activity rings</li>
-              </ul>
-              <div className="mt-4 p-4 rounded-xl" style={{ background: 'rgba(134,239,172,0.1)', border: '1px solid rgba(134,239,172,0.3)' }}>
-                <p className="text-sm text-green-800">
-                  <strong>Important:</strong> You choose which data types to share. You can enable steps but not heart rate, for example. You can update or revoke permissions at any time.
-                </p>
-              </div>
-
-              <h3 className="text-xl font-semibold text-gray-900 mt-6 mb-3">2.3 Mobile Information Sharing</h3>
+              <h3 className="text-xl font-semibold text-gray-900 mt-6 mb-3">2.2 Mobile Information Sharing</h3>
               <div className="p-4 rounded-xl" style={{ background: 'rgba(239,68,68,0.05)', border: '1px solid rgba(239,68,68,0.2)' }}>
                 <p className="text-sm font-bold text-red-800 mb-1">No Mobile Data Sharing Policy</p>
                 <p className="text-sm text-red-700">
-                  <strong>No mobile information will be shared with or sold to third parties for marketing or promotional purposes.</strong> All categories of mobile information are excluded from sharing with third-party marketers. We are committed to protecting your mobile information and will only use it for the purposes outlined in this Privacy Policy, such as providing our wellness platform and communicating with you about your account via transactional account alert SMS messages.
+                  <strong>No mobile information will be shared with or sold to third parties for marketing or promotional purposes.</strong> All categories of mobile information are excluded from sharing with third-party marketers. We are committed to protecting your mobile information and will only use it for the purposes outlined in this Privacy Policy, such as providing our consultancy services and communicating with you about your account via transactional account alert SMS messages.
                 </p>
               </div>
 
-              <h3 className="text-xl font-semibold text-gray-900 mt-6 mb-3">2.4 Automatically Collected Information</h3>
+              <h3 className="text-xl font-semibold text-gray-900 mt-6 mb-3">2.3 Automatically Collected Information</h3>
               <ul className="list-disc pl-6 text-gray-600 space-y-2">
                 <li>Device information (browser type, operating system)</li>
                 <li>IP address and general location data</li>
-                <li>Usage data (pages visited, features used)</li>
-                <li>Platform performance data</li>
+                <li>Usage data (pages visited, features used, time spent)</li>
+                <li>Cookies and similar tracking technologies</li>
               </ul>
             </div>
 
             <div>
               <h2 className="text-2xl font-bold text-gray-900 mb-4">3. How We Use Your Information</h2>
               <ul className="list-disc pl-6 text-gray-600 space-y-2">
-                <li>Provide and maintain the Team Cross Fit wellness platform</li>
-                <li>Track your progress toward wellness challenges and goals</li>
-                <li>Calculate and award points and rewards</li>
-                <li>Send service-related communications and wellness updates</li>
-                <li>Generate aggregate analytics for your employer&apos;s wellness program</li>
+                <li>Provide personalized auto consultancy services and recommendations</li>
+                <li>Respond to your inquiries and consultation requests</li>
+                <li>Schedule and manage consultation appointments</li>
+                <li>Send service-related communications and follow-ups</li>
+                <li>Improve our services and user experience</li>
                 <li>Detect and prevent fraud or abuse</li>
                 <li>Comply with legal obligations</li>
               </ul>
             </div>
 
             <div>
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">4. What Employers Can See</h2>
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">4. SMS Communications</h2>
               <p className="text-gray-600 mb-4">
-                Employers who use Team Cross Fit to run wellness programs have access to aggregate wellness engagement data — not individual employee health records.
+                Auto Insurance Template may send SMS (text message) communications to users who have opted in. Our SMS program is limited exclusively to <strong>transactional account alert text messages</strong>, which may include:
               </p>
-              <div className="grid md:grid-cols-2 gap-4">
-                <div className="p-4 rounded-xl" style={{ background: 'rgba(134,239,172,0.1)', border: '1px solid rgba(134,239,172,0.3)' }}>
-                  <p className="text-sm font-semibold text-green-800 mb-2">✅ Employers CAN see:</p>
-                  <ul className="text-sm text-green-700 space-y-1">
-                    <li>• Overall participation rates</li>
-                    <li>• Challenge completion percentages</li>
-                    <li>• Team-level engagement trends</li>
-                    <li>• Aggregate step totals</li>
-                    <li>• Rewards distributed</li>
-                  </ul>
-                </div>
-                <div className="p-4 rounded-xl" style={{ background: 'rgba(239,68,68,0.05)', border: '1px solid rgba(239,68,68,0.2)' }}>
-                  <p className="text-sm font-semibold text-red-800 mb-2">❌ Employers CANNOT see:</p>
-                  <ul className="text-sm text-red-700 space-y-1">
-                    <li>• Individual employee health data</li>
-                    <li>• Personal medical information</li>
-                    <li>• Heart rate or sleep data</li>
-                    <li>• Individual step counts by name</li>
-                    <li>• Any data you haven&apos;t authorized</li>
-                  </ul>
-                </div>
-              </div>
+              <ul className="list-disc pl-6 text-gray-600 space-y-2">
+                <li>Consultation appointment confirmations and reminders</li>
+                <li>Account access and onboarding confirmations</li>
+                <li>Follow-up information related to your consultancy requests</li>
+                <li>Account security and access notifications</li>
+              </ul>
+              <p className="text-gray-600 mt-4">
+                <strong>We do not send marketing or promotional SMS messages.</strong> No mobile information will be shared with or sold to third parties for marketing or promotional purposes.
+              </p>
+              <p className="text-gray-600 mt-4">
+                Message and data rates may apply. Message frequency varies based on account activity. To opt out of SMS notifications at any time, reply <strong>STOP</strong> to any message. For help, reply <strong>HELP</strong> or contact us at <a href="mailto:support@autoinsurancetemplate.com" className="text-blue-600 hover:underline">support@autoinsurancetemplate.com</a>.
+              </p>
             </div>
 
             <div>
@@ -149,76 +125,75 @@ export default function PrivacyPage() {
               <p className="text-gray-600 mb-4">We may share your information with:</p>
 
               <h3 className="text-xl font-semibold text-gray-900 mt-4 mb-2">5.1 Service Providers</h3>
-              <p className="text-gray-600">Third-party vendors who perform services on our behalf, such as hosting, analytics, and customer support. These providers are contractually obligated to protect your information.</p>
+              <p className="text-gray-600">Third-party vendors who perform services on our behalf, such as hosting, analytics, and customer support. These providers are contractually obligated to protect your information and may not use it for their own purposes.</p>
 
-              <h3 className="text-xl font-semibold text-gray-900 mt-4 mb-2">5.2 Your Employer</h3>
-              <p className="text-gray-600">Aggregate wellness engagement data as described in Section 4. Individual health data is never shared with employers.</p>
+              <h3 className="text-xl font-semibold text-gray-900 mt-4 mb-2">5.2 Legal Requirements</h3>
+              <p className="text-gray-600">When required by law, court order, or government regulation, or when we believe disclosure is necessary to protect our rights or the safety of others.</p>
 
-              <h3 className="text-xl font-semibold text-gray-900 mt-4 mb-2">5.3 Legal Requirements</h3>
-              <p className="text-gray-600">When required by law, court order, or government regulation.</p>
+              <h3 className="text-xl font-semibold text-gray-900 mt-4 mb-2">5.3 Business Transfers</h3>
+              <p className="text-gray-600">In connection with a merger, acquisition, or sale of assets, your information may be transferred as part of that transaction.</p>
+
+              <div className="mt-4 p-4 rounded-xl" style={{ background: 'rgba(30,64,175,0.06)', border: '1px solid rgba(30,64,175,0.15)' }}>
+                <p className="text-sm text-blue-800 font-semibold">We do not sell, rent, or trade your personal information to third parties for their marketing purposes.</p>
+              </div>
             </div>
 
             <div>
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">6. SMS Communications</h2>
-              <p className="text-gray-600 mb-4">
-                Team Cross Fit may send SMS (text message) communications to users who have opted in. Our SMS program is limited exclusively to <strong>alert related text messages</strong>, which may include:
-              </p>
-              <ul className="list-disc pl-6 text-gray-600 space-y-2">
-                <li>Account access and onboarding confirmations</li>
-                <li>Challenge milestone and completion alerts</li>
-                <li>Streak notifications and reminders</li>
-                <li>Reward and points activity alerts</li>
-              </ul>
-              <p className="text-gray-600 mt-4">
-                <strong>We do not send marketing or promotional SMS messages.</strong> No mobile information will be shared with or sold to third parties for marketing or promotional purposes.
-              </p>
-              <p className="text-gray-600 mt-4">
-                Message and data rates may apply. Message frequency varies based on account activity. To opt out of SMS notifications at any time, reply <strong>STOP</strong> to any message. For help, reply <strong>HELP</strong> or contact us at <a href="mailto:support@teamcrossfit.com" className="text-green-600 hover:underline">support@teamcrossfit.com</a>.
-              </p>
-            </div>
-
-            <div>
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">7. Your Rights and Choices</h2>
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">6. Your Rights and Choices</h2>
               <ul className="list-disc pl-6 text-gray-600 space-y-2">
                 <li><strong>Access:</strong> Request access to the personal information we hold about you</li>
-                <li><strong>Correction:</strong> Request correction of inaccurate information</li>
+                <li><strong>Correction:</strong> Request correction of inaccurate or incomplete information</li>
                 <li><strong>Deletion:</strong> Request deletion of your personal information</li>
-                <li><strong>Permissions:</strong> Update or revoke health data permissions at any time</li>
-                <li><strong>Opt-out:</strong> Opt out of SMS communications by replying STOP</li>
+                <li><strong>Opt-out:</strong> Opt out of SMS communications by replying STOP to any message</li>
+                <li><strong>Cookies:</strong> Manage cookie preferences through your browser settings</li>
               </ul>
               <p className="text-gray-600 mt-4">
-                To exercise these rights, contact us at <a href="mailto:support@teamcrossfit.com" className="text-green-600 hover:underline">support@teamcrossfit.com</a>.
+                To exercise these rights, contact us at <a href="mailto:support@autoinsurancetemplate.com" className="text-blue-600 hover:underline">support@autoinsurancetemplate.com</a>.
               </p>
             </div>
 
             <div>
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">8. Data Security</h2>
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">7. Data Security</h2>
               <p className="text-gray-600">
-                We implement appropriate technical and organizational security measures to protect your information against unauthorized access, alteration, disclosure, or destruction. These measures include encryption of data in transit (HTTPS/TLS), secure hosting infrastructure, access controls, and regular security assessments.
+                We implement appropriate technical and organizational security measures to protect your information against unauthorized access, alteration, disclosure, or destruction. These measures include encryption of data in transit (HTTPS/TLS), secure hosting infrastructure, access controls, and regular security assessments. However, no method of transmission over the internet is 100% secure.
+              </p>
+            </div>
+
+            <div>
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">8. Data Retention</h2>
+              <p className="text-gray-600">
+                We retain your personal information for as long as necessary to provide our services and comply with legal obligations. When you request deletion of your account or information, we will delete or anonymize your data within a reasonable timeframe, except where retention is required by law.
               </p>
             </div>
 
             <div>
               <h2 className="text-2xl font-bold text-gray-900 mb-4">9. Children&apos;s Privacy</h2>
               <p className="text-gray-600">
-                Our service is not intended for individuals under the age of 18. We do not knowingly collect personal information from children.
+                Our service is not intended for individuals under the age of 18. We do not knowingly collect personal information from children. If we become aware that we have collected information from a child, we will take steps to delete it promptly.
               </p>
             </div>
 
             <div>
               <h2 className="text-2xl font-bold text-gray-900 mb-4">10. Changes to This Policy</h2>
               <p className="text-gray-600">
-                We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the &quot;Last Updated&quot; date.
+                We may update this Privacy Policy from time to time. We will notify you of any material changes by posting the new Privacy Policy on this page and updating the &quot;Last Updated&quot; date. We encourage you to review this policy periodically.
               </p>
             </div>
 
             <div>
               <h2 className="text-2xl font-bold text-gray-900 mb-4">11. Contact Us</h2>
               <div className="glass-card p-6">
-                <p className="text-gray-600 mb-2"><strong>Email:</strong> <a href="mailto:support@teamcrossfit.com" className="text-green-600 hover:underline">support@teamcrossfit.com</a></p>
+                <p className="text-gray-600 mb-2">If you have questions about this Privacy Policy or our data practices, please contact us:</p>
+                <p className="text-gray-600 mb-2"><strong>Email:</strong> <a href="mailto:support@autoinsurancetemplate.com" className="text-blue-600 hover:underline">support@autoinsurancetemplate.com</a></p>
                 <p className="text-gray-600 mb-2"><strong>Phone:</strong> (855) XXX-XXXX</p>
-                <p className="text-gray-600"><strong>Website:</strong> <a href="/" className="text-green-600 hover:underline">teamcrossfit.com</a></p>
+                <p className="text-gray-600"><strong>Website:</strong> <a href="/" className="text-blue-600 hover:underline">autoinsurancetemplate.com</a></p>
               </div>
+            </div>
+
+            <div className="pt-4">
+              <Link href="/terms" className="inline-flex items-center gap-2 text-sm font-semibold text-blue-600 hover:text-blue-700">
+                ← View Terms of Service
+              </Link>
             </div>
 
           </div>

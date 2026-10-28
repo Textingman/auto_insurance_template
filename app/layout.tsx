@@ -2,18 +2,18 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Team Cross Fit — Connected Employee Wellness",
-  description: "Team Cross Fit connects the health apps and devices your employees already use with company wellness programs, challenges, and rewards.",
-  keywords: "employee wellness, workplace wellness, health app integration, wellness challenges, Apple Health, fitness tracker, employee health",
+  title: "Auto Insurance Template — Car Selection, Insurance & Maintenance Consultancy",
+  description: "Expert consultancy helping you choose the right car, find the best auto insurance, and keep your vehicle running at its best.",
+  keywords: "auto insurance, car selection, vehicle maintenance, car buying advice, insurance comparison, auto consultancy",
   icons: {
     icon: "/favicon.png",
     shortcut: "/favicon.png",
     apple: "/favicon.png",
   },
   openGraph: {
-    title: "Team Cross Fit — Connected Employee Wellness",
-    description: "Connect the health apps your employees already use. Build wellness programs people actually participate in.",
-    siteName: "Team Cross Fit",
+    title: "Auto Insurance Template — Car Selection, Insurance & Maintenance Consultancy",
+    description: "Expert guidance on selecting the right car, comparing auto insurance options, and maintaining your vehicle.",
+    siteName: "Auto Insurance Template",
     locale: "en_US",
     type: "website",
   },

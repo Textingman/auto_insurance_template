@@ -15,11 +15,10 @@ export default function Nav() {
   }, []);
 
   const navLinks = [
-    { href: '/product', label: 'Product' },
-    { href: '/how-it-works', label: 'How It Works' },
-    { href: '/integrations', label: 'Integrations' },
-    { href: '/challenges', label: 'Challenges' },
-    { href: '/for-employers', label: 'For HR Teams' },
+    { href: '/services', label: 'Services' },
+    { href: '/pricing', label: 'Pricing' },
+    { href: '/about', label: 'About' },
+    { href: '/contact', label: 'Contact' },
   ];
 
   return (
@@ -27,7 +26,9 @@ export default function Nav() {
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2">
-          <Image src="/logo.png" alt="Team Cross Fit" width={200} height={60} className="h-14 w-auto" />
+          <span className="text-xl font-bold text-gray-900" style={{ letterSpacing: '-0.02em' }}>
+            Auto Insurance
+          </span>
         </Link>
 
         {/* Desktop Nav */}
@@ -42,10 +43,10 @@ export default function Nav() {
 
         {/* CTA */}
         <div className="flex items-center gap-3">
-          <Link href="/signup"
+          <Link href="/contact"
             className="hidden md:block px-5 py-2.5 text-sm font-medium text-white rounded-xl transition-all hover:opacity-90 hover:-translate-y-0.5 shadow-lg"
-            style={{ background: 'linear-gradient(135deg, #16a34a, #059669)' }}>
-            Get Started
+            style={{ background: 'linear-gradient(135deg, #1e40af, #2563eb)' }}>
+            Get a Consultation
           </Link>
           <button className="md:hidden p-2 rounded-lg hover:bg-black/5" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -65,10 +66,10 @@ export default function Nav() {
               {item.label}
             </Link>
           ))}
-          <Link href="/signup"
+          <Link href="/contact"
             className="block w-full mt-3 px-5 py-3 text-sm font-medium text-white rounded-xl text-center"
-            style={{ background: 'linear-gradient(135deg, #16a34a, #059669)' }}>
-            Get Started
+            style={{ background: 'linear-gradient(135deg, #1e40af, #2563eb)' }}>
+            Get a Consultation
           </Link>
         </div>
       )}
